@@ -51,9 +51,10 @@ def update():
 
 def delete():
     requestData=json.loads(request.data)
-    user = Users(requestData['ID'], requestData['name'], requestData['phoneNumber'], requestData['email'])
+    user = Users(requestData['ID'], requestData['name'], requestData['email'], requestData['phoneNumber'])
     ret=user.deleteUser()
     if ret:
         return "success", 200
     else:
         return "fail", 400
+        
