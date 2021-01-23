@@ -23,7 +23,7 @@ def users():
 
 
 def home():
-    dbCon = sqlite3.connect("../../../../flaskProject/src/Users/test.db")
+    dbCon = sqlite3.connect("test.db")
     cursor = dbCon.cursor()
     cursor.execute('''SELECT * FROM Users ''')
     data = cursor.fetchall()
