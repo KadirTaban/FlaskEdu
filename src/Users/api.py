@@ -25,7 +25,7 @@ def users():
 def home():
     dbCon = sqlite3.connect("test.db")
     cursor = dbCon.cursor()
-    cursor.execute('''SELECT * FROM Users ''')
+    cursor.execute('''SELECT * FROM Users where Name = ?''')
     data = cursor.fetchall()
     result =json.dumps(data)
     return result

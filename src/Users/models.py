@@ -35,7 +35,7 @@ class Users:
         try:
             with dbCon:
                 cursor=dbCon.cursor()
-                cursor.execute("DELETE FROM Users where (ID=?,Name=?,Email=?,PhoneNumber=?)",(self.ID,self.name,self.email,self.phoneNumber))
+                cursor.execute("DELETE FROM users where Name=? , Email=? ,PhoneNumber=? , ID=?",(self.name,self.email,self.phoneNumber,self.ID))
                 dbCon.commit()
             return True
         except Exception as e :
