@@ -1,5 +1,6 @@
 from src import dbCon
 import sqlite3
+import json
 
 
 class Users:
@@ -41,3 +42,40 @@ class Users:
         except Exception as e :
             print(e)
             return False
+
+class UserQuery:
+    def __init__(self,ID,name,email,phoneNumber,gender,country):
+        self.ID=ID
+        self.name=name
+        self.email=email
+        self.phoneNumber=phoneNumber
+        self.gender=gender
+        self.country=country
+
+
+    def userSelector(self):
+        try:
+            with dbCon:
+                cursor=dbCon.cursor()
+                cursor.execute("SELECT Name from users where country='şavşat'")
+                data=cursor.fetchall()
+                result=json.dumps(data)
+                return result
+                dbCon.commit()
+
+            return True
+        except Exception as e:
+            print(e)
+            return False
+    def collector(self):
+        try:
+            with dbCon:
+                cursor=dbCon.cursor()
+                cursor.execute('''INSERT INTO users(ID, Name, Email, PhoneNumber,Gender,Country) VALUES (?,?,?,?,?,?)''',(self.ID,self.name,self.email,self.phoneNumber,self.gender,self.country))
+                dbCon.commit()
+            return True
+        except Exception as e:
+            print(e)
+            return False
+
+

@@ -2,6 +2,7 @@ from flask import request
 from flask_restful import Resource,Api
 from src import app
 from src.Users.models import Users
+from src.Users.models import UserQuery
 import json
 import sqlite3
 
@@ -57,4 +58,24 @@ def delete():
         return "success", 200
     else:
         return "fail", 400
-        
+
+@app.route("/users/query/select",methods=['GET'])
+
+def selector():
+    requestData=json.loads(request.data)
+    user=UserQuery(requestData['ID'], requestData['name'], requestData['email'], requestData['phoneNumber'],requestData['gender'],requestData['country'])
+    ret=user.userSelector()
+    return ret
+    if ret:
+        return "success", 200
+    else:
+        return "fail", 400
+@app.route("/users/query/add",methods=['POST'])
+def add():
+    requestData=json.loads(request.data)
+    user=UserQuery(requestData['ID'], requestData['name'], requestData['email'], requestData['phoneNumber'],requestData['gender'],requestData['country'])
+    ret=user.collector()
+    if ret:
+        return "success", 200
+    else:
+        return "fail", 400
