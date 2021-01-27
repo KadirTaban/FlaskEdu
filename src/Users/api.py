@@ -63,7 +63,7 @@ def delete():
 
 def selector():
     requestData=json.loads(request.data)
-    user=UserQuery(requestData['ID'], requestData['name'], requestData['email'], requestData['phoneNumber'],requestData['gender'],requestData['country'])
+    user=UserQuery(requestData['gender'])
     ret=user.userSelector()
     return ret
     if ret:

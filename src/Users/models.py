@@ -3,6 +3,7 @@ import sqlite3
 import json
 
 
+
 class Users:
     def __init__(self,ID,name,email,phoneNumber=None):
         self.ID=ID
@@ -44,7 +45,7 @@ class Users:
             return False
 
 class UserQuery:
-    def __init__(self,ID,name,email,phoneNumber,gender,country):
+    def __init__(self,country,name=None,ID=None,email=None,phoneNumber=None,gender=None):
         self.ID=ID
         self.name=name
         self.email=email
@@ -57,9 +58,10 @@ class UserQuery:
         try:
             with dbCon:
                 cursor=dbCon.cursor()
-                cursor.execute("SELECT Name from users where country='şavşat'")
+                cursor.execute("SELECT * from users where Gender")
                 data=cursor.fetchall()
                 result=json.dumps(data)
+
                 return result
                 dbCon.commit()
 
